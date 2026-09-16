@@ -127,6 +127,10 @@
   nav.links a:hover{ color:var(--forest); }
   .nav-cta{ display:flex; gap:12px; align-items:center; }
   .nav-call{ font-family:'JetBrains Mono'; font-weight:700; font-size:14px; padding:10px 16px; border:2px solid var(--ink); }
+  @media(max-width:467px){
+    .nav-call{ padding:10px 12px; }
+    .nav-call-text{ display:none; }
+  }
   .menu-toggle{
     display:none; align-items:center; justify-content:center;
     width:42px; height:42px; padding:0;
@@ -155,6 +159,27 @@
   .wa-float:hover{ transform:scale(1.08); }
   .wa-float svg{ width:30px; height:30px; fill:#fff; }
   @media(max-width:560px){ .wa-float{ width:52px; height:52px; right:16px; bottom:16px; } }
+
+  /* ===== CAROUSEL ===== */
+  .carousel{ position:relative; width:100%; height:460px; overflow:hidden; background:var(--ink); }
+  .carousel-track{ display:flex; height:100%; transition:transform .6s cubic-bezier(.65,0,.35,1); }
+  .carousel-slide{ min-width:100%; height:100%; }
+  .carousel-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    background:rgba(17,34,26,0.55); color:#fff; border:none;
+    width:44px; height:44px; font-size:26px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; z-index:5;
+    transition:background .2s ease;
+  }
+  .carousel-arrow:hover{ background:var(--forest); }
+  .carousel-arrow.prev{ left:16px; }
+  .carousel-arrow.next{ right:16px; }
+  .carousel-dots{ position:absolute; bottom:18px; left:0; right:0; display:flex; justify-content:center; gap:8px; z-index:5; }
+  .carousel-dot{ width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.45); cursor:pointer; border:none; padding:0; }
+  .carousel-dot.active{ background:var(--amber); }
+  @media(max-width:768px){ .carousel{ height:280px; } .carousel-arrow{ width:36px; height:36px; font-size:20px; } }
+  @media(max-width:480px){ .carousel{ height:210px; } }
 
   /* ===== HERO ===== */
   .hero{ padding:0 0 0; position:relative; overflow:hidden; background:linear-gradient(180deg,#eceee6 0%, var(--paper) 55%); }
@@ -336,8 +361,9 @@
   /* ===== CEO ===== */
   .ceo-section{ background:var(--paper-alt); }
   .ceo-grid{ display:grid; grid-template-columns:0.35fr 0.65fr; gap:50px; align-items:center; }
-  .ceo-avatar{ width:100%; aspect-ratio:1; background:var(--forest); display:flex; align-items:center; justify-content:center; border:1px solid var(--line-strong);}
+  .ceo-avatar{ width:100%; aspect-ratio:1; background:var(--forest); display:flex; align-items:center; justify-content:center; border:1px solid var(--line-strong); overflow:hidden;}
   .ceo-avatar span{ font-family:'Archivo Black'; font-size:64px; color:#fff; }
+  .ceo-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
   .ceo-quote{ font-size:22px; font-family:'Inter'; font-weight:600; line-height:1.5; color:var(--ink); position:relative; padding-left:26px; border-left:3px solid var(--forest); }
   .ceo-name{ margin-top:24px; }
   .ceo-name b{ display:block; font-size:16px; }
@@ -350,7 +376,8 @@
   .team-sub .np{ font-family:'Noto Sans Devanagari'; font-weight:700; font-size:14.5px; color:var(--forest-deep); }
   .team-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line-strong); border:1px solid var(--line-strong); }
   .team-card{ background:var(--panel); padding:26px 16px; text-align:center; }
-  .team-avatar{ width:58px; height:58px; border-radius:50%; margin:0 auto 14px; display:flex; align-items:center; justify-content:center; font-family:'Archivo Black'; font-size:18px; color:#fff; }
+  .team-avatar{ width:100px; height:100px; margin:0 auto 14px; display:flex; align-items:center; justify-content:center; font-family:'Archivo Black'; font-size:18px; color:#fff; overflow:hidden; }
+  .team-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
   .team-avatar.c1{ background:var(--forest); }
   .team-avatar.c2{ background:var(--blue); }
   .team-avatar.c3{ background:var(--forest-deep); }
@@ -509,7 +536,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-cta">
-      <a href="tel:+9779851164997" class="nav-call">📞 985-1164997</a>
+      <a href="tel:+9779851164997" class="nav-call">📞<span class="nav-call-text"> 985-1164997</span></a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
         <span class="bar"></span>
       </button>
@@ -534,6 +561,57 @@
   })();
 </script>
 
+<!-- ============ CAROUSEL ============ -->
+<section class="carousel" id="carousel" aria-label="Sulaxmi Industry photo carousel">
+  <div class="carousel-track" id="carouselTrack">
+    <div class="carousel-slide"><img src="./assets/carousel/carousel_image1.jpg" alt="Sulaxmi Industry — machine 1"></div>
+    <div class="carousel-slide"><img src="assets/carousel/carousel_image2.png" alt="Sulaxmi Industry — machine 2"></div>
+    <div class="carousel-slide"><img src="assets/carousel/carousel_image3.png" alt="Sulaxmi Industry — machine 3"></div>
+    <div class="carousel-slide"><img src="assets/carousel/carousel_image4.png" alt="Sulaxmi Industry — machine 4"></div>
+  <!-- https://chatgpt.com/s/m_6a9d2f8426d081918e72ff263d99ebb1 -->
+  <!-- https://chatgpt.com/s/m_6aa136c6b2188191afac90981c20e9e5 -->
+  <!-- https://chatgpt.com/s/m_6a9d2d51e5e0819181fe353bbfd19756 -->
+  </div>
+  <button class="carousel-arrow prev" id="carouselPrev" aria-label="Previous slide">‹</button>
+  <button class="carousel-arrow next" id="carouselNext" aria-label="Next slide">›</button>
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
+<script>
+  (function(){
+    var track = document.getElementById('carouselTrack');
+    var slides = track.children;
+    var dotsWrap = document.getElementById('carouselDots');
+    var total = slides.length;
+    var idx = 0;
+
+    for(var i=0;i<total;i++){
+      var dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i===0 ? ' active' : '');
+      dot.setAttribute('aria-label','Go to slide ' + (i+1));
+      (function(n){ dot.addEventListener('click', function(){ goTo(n); }); })(i);
+      dotsWrap.appendChild(dot);
+    }
+
+    function update(){
+      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      Array.prototype.forEach.call(dotsWrap.children, function(d, i){
+        d.classList.toggle('active', i === idx);
+      });
+    }
+    function goTo(i){ idx = (i + total) % total; update(); resetTimer(); }
+    function next(){ goTo(idx + 1); }
+    function prev(){ goTo(idx - 1); }
+
+    document.getElementById('carouselNext').addEventListener('click', next);
+    document.getElementById('carouselPrev').addEventListener('click', prev);
+
+    var timer = setInterval(next, 4500);
+    function resetTimer(){ clearInterval(timer); timer = setInterval(next, 4500); }
+
+    update();
+  })();
+</script>
+
 <!-- ============ HERO ============ -->
 <div id="top"></div>
 <section class="hero">
@@ -549,6 +627,7 @@
         <div class="hero-ctas">
           <a href="tel:+9779851164997" class="btn btn-primary">Call 985-1164997</a>
           <a href="https://wa.me/9779851164997?text=Namaste%2C%20I%27d%20like%20to%20know%20more%20about%20your%20machines." target="_blank" rel="noopener" class="btn btn-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.8.7.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.2-.4-4.6-1.3l-.3-.2-3.2.8.8-3.1-.2-.3C3.7 14.7 3.2 13.4 3.2 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.8 8.3-8.6 8.3z"/></svg> Open WhatsApp</a>
+          <a href="https://wa.me/9851072720?text=Namaste%2C%20I%27d%20like%20to%20know%20more%20about%20your%20machines." target="_blank" rel="noopener" class="btn btn-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.8.7.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.2-.4-4.6-1.3l-.3-.2-3.2.8.8-3.1-.2-.3C3.7 14.7 3.2 13.4 3.2 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.8 8.3-8.6 8.3z"/></svg> Open WhatsApp</a>
           <a href="https://www.facebook.com/sulaxmiindustry/" target="_blank" rel="noopener" class="btn btn-outline">Facebook Page</a>
           <a href="#products" class="btn btn-outline">See Machines ↓</a>
         </div>
@@ -591,8 +670,8 @@
         </div>
         <div class="hero-about-grid">
           <div class="hero-about-col">
-            <h3 class="np">हामी को हौं?</h3>
-            <p class="np">सुलक्ष्मी इण्डष्ट्रीले उत्पादन गर्ने मेसिनहरूको बारेमा हजुरहरूलाई आज जानकारी गराउँदै छौं। हाम्रो कम्पनीले उत्पादन गरेका मेसिनहरू यस प्रकारका छन् — जस्तै कम्पोस्ट मल बनाउने मेसिन, त्यसैगरी waste म्यानेजमेन्ट प्लास्टिक रिसाइकलिङ मेसिन, केराको धागो निकाल्ने मेसिन, अल्लोबाट धागो निकाल्ने मेसिन, गाँजाबाट धागो निकाल्ने मेसिन, साबुन बनाउने मेसिन, सर्फ (Surf) बनाउने मेसिन, धुप बत्ति बनाउने मेसिन, एसेन्सियल ओइल (Essential Oil) निकाल्ने मेसिन, चप्पल बनाउने मेसिन, चाउमिन बनाउने मेसिन, सालको पातको दुना/प्लेट बनाउने मेसिन, सुपारी र नरिवलको पातबाट दुना-प्लेट बनाउने मेसिन लगायत विभिन्न किसिमका मेसिनहरू हामीले उत्पादन गर्दै आएका छौं।</p>
+            <h3 class="np">हामी को हौं? सुलक्ष्मी इण्डष्ट्रीले उत्पादन गर्ने मेसिनहरूको जानकारी</h3>
+            <p class="np"> हाम्रो कम्पनीले उत्पादन गरेका मेसिनहरू यस प्रकारका छन् — जस्तै कम्पोस्ट मल बनाउने मेसिन, त्यसैगरी waste म्यानेजमेन्ट प्लास्टिक रिसाइकलिङ मेसिन, केराको धागो निकाल्ने मेसिन, अल्लोबाट धागो निकाल्ने मेसिन, गाँजाबाट धागो निकाल्ने मेसिन, साबुन बनाउने मेसिन, सर्फ (Surf) बनाउने मेसिन, धुप बत्ति बनाउने मेसिन, एसेन्सियल ओइल (Essential Oil) निकाल्ने मेसिन, चप्पल बनाउने मेसिन, चाउमिन बनाउने मेसिन, सालको पातको दुना/प्लेट बनाउने मेसिन, सुपारी र नरिवलको पातबाट दुना-प्लेट बनाउने मेसिन लगायत विभिन्न किसिमका मेसिनहरू हामीले उत्पादन गर्दै आएका छौं।</p>
             <div class="gov-note np">🏛️ सुलक्ष्मी इण्डष्ट्री नेपाल सरकारका स्थानीय तहका निकायहरू — नगरपालिका र विभिन्न वडाहरू — सँग समेत काम गर्दछ। आवश्यकता अनुसार मेसिनहरू वितरण गरी स्थानीयबासीलाई ती मेसिन सञ्चालन गरेर स्वरोजगार बन्न हामी सहयोग पुर्‍याउँछौं।</div>
           </div>
           <div class="hero-about-col">
@@ -923,28 +1002,33 @@
       <span class="np">व्यवस्थापन टोली</span>
     </div>
     <div class="team-grid">
+       <div class="team-card">
+        <div class="team-avatar c1"><img src="assets/people/mngt/Shobhakhar_Poudel_CEO.jpg" alt="Shobhakhar Poudel CEO and Founder"></div>
+        <h4>Shobhakhar Poudel</h4>
+        <span>CEO and Founder</span>
+      </div>
       <div class="team-card">
-        <div class="team-avatar c1">LP</div>
+        <div class="team-avatar c1"><img src="assets/people/mngt/Laxmi_Poudel_Account.jpeg" alt="Laxmi Poudel"></div>
         <h4>Laxmi Poudel</h4>
         <span>ACCOUNT HEAD</span>
       </div>
       <div class="team-card">
-        <div class="team-avatar c2">GA</div>
+        <div class="team-avatar c2"><img src="assets/people/mngt/Govind_Aryal_Mngt_Dir.jpeg" alt="Govind Aryal"></div>
         <h4>Govind Aryal</h4>
-        <span>MANAGER</span>
+        <span>MANAGING DIRECTOR</span>
       </div>
       <div class="team-card">
-        <div class="team-avatar c1">CA</div>
+        <div class="team-avatar c1"><img src="assets/people/mngt/Chintamani_Acharya_Marketing.jpeg" alt="Chintamani Acharya"></div>
         <h4>Chintamani Acharya</h4>
         <span>MARKETING HEAD</span>
       </div>
       <div class="team-card">
-        <div class="team-avatar c2">TP</div>
+        <div class="team-avatar c2"><img src="assets/people/mngt/Tara_Pokharel_Marketing_exe.jpeg" alt="Tara Pokharel"></div>
         <h4>Tara Pokharel</h4>
         <span>MARKETING EXECUTIVE</span>
       </div>
       <div class="team-card">
-        <div class="team-avatar c1">NA</div>
+        <div class="team-avatar c1"><img src="assets/people/mngt/Nishma_Acharya_Marketing_staff.jpeg" alt="Nishma Acharya"></div>
         <h4>Nishma Acharya</h4>
         <span>MARKETING</span>
       </div>
@@ -1018,7 +1102,7 @@
     <span class="eyebrow">Leadership</span>
     <h2 class="section-title" style="margin-bottom:40px;">A word from our founder</h2>
     <div class="ceo-grid">
-      <div class="ceo-avatar"><span>SP</span></div>
+      <div class="ceo-avatar"><img src="assets/people/mngt/Sobhakhar_Poudel_CEOnFounder.jpeg" alt="Sobhakhar Poudel"></div>
       <div>
         <p class="ceo-quote">"We didn't set out to just sell machines — we set out to build the ones our farmers and factories actually needed, and stand behind every one we deliver. That's still the standard we hold ourselves to today."</p>
         <p class="ceo-quote np" style="margin-top:20px; font-size:17px; font-weight:500;">"हामीले जहिले पनि गुणस्तरमा कुनै सम्झौता गरेका छैनौं। ग्राहकको खेत होस् वा कारखाना, हाम्रो मेसिन उहाँहरुको ठाउँसम्मै पुर्‍याएर जडान गरिदिनु नै हाम्रो जिम्मेवारी हो।"</p>
@@ -1117,7 +1201,8 @@
         <h5>Contact</h5>
         <ul>
           <li>Chovar-6, Kirtipur, Kathmandu 44618, Nepal</li>
-          <li><a href="tel:+9779851164997">985-1164997</a></li>
+          <li><a href="tel:+9779851164997">9851164997</a></li>
+          <li><a href="tel:+9779851072720">9851072720</a></li>
           <li><a href="mailto:sulaxmiindustry@gmail.com">sulaxmiindustry@gmail.com</a></li>
         </ul>
       </div>
